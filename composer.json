@@ -1,0 +1,15 @@
+{
+    "name": "saikat/p-engine",
+    "authors": [
+        {
+            "name": "Md. Ariful Islam Saikat",
+            "email": "saikat.geek@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}

@@ -1,5 +1,4 @@
 <?php
-
 namespace app\core;
 
 class Router
@@ -24,11 +23,40 @@ class Router
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-            echo "Not Found";
+            return "Not Found";
             exit;
         }       
 
-        echo call_user_func($callback);
-        
+        if (is_string($callback) )
+        {
+            return $this->renderView($callback);
+        }
+
+        return call_user_func($callback);        
     }
+
+    public function renderView($view)
+    {
+        $layoutContent = $this->layoutContent();
+        $viewContent = $this->renderOnlyView($view);
+        
+        return str_replace("{{ content }}", $viewContent, $layoutContent);
+    }
+    
+
+    public function layoutContent()
+    {        
+        ob_start(); 
+        include_once Application::$ROOT_DIR."/view/layouts/main.php";
+        return ob_get_clean();
+    }
+
+    public function renderOnlyView($view)
+    {
+        ob_start();
+        include_once Application::$ROOT_DIR."/view/$view.php";
+        return ob_get_clean();
+    }
+
+
 }

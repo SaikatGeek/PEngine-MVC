@@ -28,11 +28,14 @@
           <a class="nav-link" href="/contact">contact</a>
         </li>
       </ul>
-      
+
     </div>
   </nav>
 
-  {{ content }}
+  <div class="container">
+    {{ content }}
+  </div>
+
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
